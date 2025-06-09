@@ -5,27 +5,27 @@ export function Footer() {
     <footer className="bg-darkBlack text-gray-400 py-8 border-t border-gray-700">
       <div className="container mx-auto px-4">
         <div className="mb-6">
-          <div className="text-xl font-bold text-blue-400 mb-4">
-            YanHH<span className="text-orange-400">3D</span>
-            <span className="text-gray-400">.VIP</span>
+          <div className="text-xl font-bold text-blue-300 mb-4">
+            DevTuTien<span className="text-orange-400"></span>
+            <span className="text-red-400">.com</span>
           </div>
           <div className="flex flex-wrap gap-2">
             <Link
-              href="https://yanhh3d.net"
+              href="https://devtutien.net"
               className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md text-sm transition-colors"
             >
-              YanHH3D.net
+              DevTuTien.net
             </Link>
             <Link
-              href="https://yanhh3d.vip"
+              href="https://devtutien.vip"
               className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-md text-sm transition-colors"
             >
-              YanHH3D.vip
+              DevTuTien.vip
             </Link>
           </div>
         </div>
 
-        <div className="text-xs text-gray-500 mb-4">Liên hệ Telegram: @ftmn2025</div>
+        <div className="text-xs text-gray-500 mb-4">Liên hệ Telegram: @devtutien2025</div>
 
         <div className="text-xs text-gray-500 flex flex-wrap gap-x-2">
           <Link href="#" className="hover:text-blue-400">
