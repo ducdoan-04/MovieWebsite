@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Search, Menu, User, Heart, History, ChevronLeft, ChevronRight } from "lucide-react"
+import { Search, Menu, User, Heart, History, ChevronLeft, ChevronRight, Radius } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -12,6 +12,7 @@ import { MovieCard } from "@/components/movie-card"
 import { GenreList } from "@/components/genre-list"
 import { MovieSchedule } from "@/components/movie-schedule"
 import { Footer } from "@/components/footer"
+import { MovieSlider } from "@/components/movie-slider"
 
 // Mock data - in real app, this would come from your Java Spring backend
 const movies = [
@@ -220,182 +221,173 @@ export default function MovieStreamingHome() {
       </header>
 
 
+      <div className="container-body container mx-auto py-2 px-4">
+          {/* Featured Movies Carousel */}
+          <MovieSlider title="Phim Đề Cử" movies={movies.slice(0, 12)} />
 
-        {/* Featured Movies Carousel */}
-        <div className="mb-8 relative" style={{border: "1px solid #333", padding: "10px 30px"}}>
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-bold text-white">Phim Đề Cử</h2>
-            <div className="flex space-x-2">
-              <Button variant="outline" size="icon" className="h-8 w-8 border-gray-600">
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="icon" className="h-8 w-8 border-gray-600">
-                <ChevronRight className="h-4 w-4" />
-              </Button>
+        {/* Welcome Message */}
+        <div className="container mx-auto py-2 px-4 rounded " style={{border: "1px solid #333", padding: "10px 30px"}}>
+          <div className="bg-darkGray rounded-lg p-4 mb-6">
+            <div className="flex items-center space-x-3">
+              <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                <User className="h-6 w-6" />
+              </div>
+              <div>
+                <h2 className="text-lg font-semibold text-white">Hoan nghênh x hữu đã ghé thăm <span className="text-blue-300">DevTuTien<span className="text-red-400">.com</span></span> </h2>
+                <p className="text-gray-400 text-sm">
+                  Bảo danh tại đây{" "}
+                  <Link href="/login" className="text-green-400 hover:underline">
+                    Đăng nhập
+                  </Link>{" "}
+                  để sử dụng các chức năng: Bộ sưu tập, Phim yêu thích, Lịch sử xem, Bình luận...
+                </p>
+                <p className="text-gray-400 text-sm">
+                  Chưa nhập môn?{" "}
+                  <Link href="/register" className="text-green-400 hover:underline">
+                    Đăng ký ngay
+                  </Link>
+                </p>
+              </div>
             </div>
           </div>
+          {/* MAIN */}
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
-            {movies.slice(0, 8).map((movie) => (
-              <MovieCard key={movie.id} {...movie} />
-            ))}
-          </div>
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              {/* Category Tabs */}
+              <div className="mb-0">
+                <div className="flex flex-wrap justify-between items-center mb-4">
+                  <h2 className="text-xl font-bold mb-0 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Mới Cập Nhật</h2>
 
-      {/* Welcome Message */}
-      <div className="container mx-auto py-2 px-4 rounded " style={{border: "1px solid #333", padding: "10px 30px"}}>
-        <div className="bg-darkGray rounded-lg p-4 mb-6">
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-              <User className="h-6 w-6" />
-            </div>
-            <div>
-              <h2 className="text-lg font-semibold text-white">Hoan nghênh x hữu đã ghé thăm <span className="text-blue-300">DevTuTien<span className="text-red-400">.com</span></span> </h2>
-              <p className="text-gray-400 text-sm">
-                Bảo danh tại đây{" "}
-                <Link href="/login" className="text-green-400 hover:underline">
-                  Đăng nhập
-                </Link>{" "}
-                để sử dụng các chức năng: Bộ sưu tập, Phim yêu thích, Lịch sử xem, Bình luận...
-              </p>
-              <p className="text-gray-400 text-sm">
-                Chưa nhập môn?{" "}
-                <Link href="/register" className="text-green-400 hover:underline">
-                  Đăng ký ngay
-                </Link>
-              </p>
-            </div>
-          </div>
-        </div>
-        {/* MAIN */}
+                  <div className="flex flex-nowrap overflow-x-auto space-x-2 bg-darkGray p-2 rounded">
+                    {categories.map((category) => (
+                      <Button
+                        key={category}
+                        variant={activeCategory === category ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => setActiveCategory(category)}
+                        className={activeCategory === category ? "bg-blue-600" : "border-gray-600 text-gray-300"}
+                      >
+                        {category}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            {/* Category Tabs */}
-            <div className="mb-0">
-              <div className="flex flex-wrap justify-between items-center mb-4">
-                <h2 className="text-xl font-bold mb-0 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Mới Cập Nhật</h2>
+              {/* Movie Grid */}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8 bg-darkGray p-4 rounded">
+                {movies.map((movie) => (
+                  <MovieCard key={movie.id} {...movie} />
+                ))}
+              </div>
+              {/* Load More Button */}
+              <div className="text-center">
+                <Button variant="outline" className="px-10 border-gray-600 text-gray-300 hover:bg-gray-700  bg-[background-color: rgba(255,255,255,.1);]" style={{borderRadius: "30px",}}>
+                  Xem thêm
+                </Button>
+                
+              </div>
 
-                <div className="flex flex-nowrap overflow-x-auto space-x-2 bg-darkGray p-2 rounded">
-                  {categories.map((category) => (
-                    <Button
-                      key={category}
-                      variant={activeCategory === category ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setActiveCategory(category)}
-                      className={activeCategory === category ? "bg-blue-600" : "border-gray-600 text-gray-300"}
+
+              {/* Full Movies Section */}
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Phim Lẻ Đặc Sắc</h2>
+                <div className="bg-darkGray p-4 rounded grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+                  {fullMovies.map((movie) => (
+                    <Card
+                      key={movie.id}
+                      className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer group"
                     >
-                      {category}
-                    </Button>
+                      <CardContent className="p-0">
+                        <div className="relative">
+                          <Image
+                            src={movie.image || "/placeholder.svg"}
+                            alt={movie.title}
+                            width={200}
+                            height={300}
+                            className="w-full h-64 object-cover rounded-t-lg"
+                          />
+                          <div className="absolute top-2 left-2">
+                            <Badge className="bg-red-500 text-white text-xs">Full Movie</Badge>
+                          </div>
+                          {movie.part && (
+                            <div className="absolute bottom-2 left-2">
+                              <Badge className="bg-green-600 text-white text-xs">{movie.part}</Badge>
+                            </div>
+                          )}
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-t-lg" />
+                        </div>
+                        <div className="p-3">
+                          <h3 className="text-sm font-medium text-white line-clamp-2 group-hover:text-blue-400 transition-colors">
+                            {movie.title}
+                          </h3>
+                        </div>
+                      </CardContent>
+                    </Card>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Movie Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mb-8 bg-darkGray p-4 rounded">
-              {movies.map((movie) => (
-                <MovieCard key={movie.id} {...movie} />
-              ))}
-            </div>
+              {/* Movie Schedule */}
+              <MovieSchedule />
 
-            {/* Full Movies Section */}
-            <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Phim Lẻ Đặc Sắc</h2>
-              <div className="bg-darkGray p-4 rounded grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-                {fullMovies.map((movie) => (
-                  <Card
-                    key={movie.id}
-                    className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer group"
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative">
-                        <Image
-                          src={movie.image || "/placeholder.svg"}
-                          alt={movie.title}
-                          width={200}
-                          height={300}
-                          className="w-full h-64 object-cover rounded-t-lg"
-                        />
-                        <div className="absolute top-2 left-2">
-                          <Badge className="bg-red-500 text-white text-xs">Full Movie</Badge>
-                        </div>
-                        {movie.part && (
-                          <div className="absolute bottom-2 left-2">
-                            <Badge className="bg-green-600 text-white text-xs">{movie.part}</Badge>
-                          </div>
-                        )}
-                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-t-lg" />
-                      </div>
-                      <div className="p-3">
-                        <h3 className="text-sm font-medium text-white line-clamp-2 group-hover:text-blue-400 transition-colors">
-                          {movie.title}
-                        </h3>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+              {/* Load More Button */}
+              <div className="text-center mt-2 mb-8">
+              <Button variant="outline" className="px-10 border-gray-600 text-gray-300 hover:bg-gray-700  bg-[background-color: rgba(255,255,255,.1);]" style={{borderRadius: "30px",}}>
+                  Xem thêm
+                </Button>
               </div>
             </div>
 
-            {/* Movie Schedule */}
-            <MovieSchedule />
-
-            {/* Load More Button */}
-            <div className="text-center mt-8 mb-8">
-              <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-700 px-8">
-                Xem thêm
-              </Button>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            {/* Rankings */}
-            <div className="bg-darkBlack rounded-lg p-4 mb-6">
-              <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Bảng Xếp Hạng</h3>
-              <div className="space-y-3 bg-darkGray pt-1 pl-1">
-                {rankings.map((item) => (
-                  <div
-                    key={item.rank}
-                    className="flex items-start space-x-3 hover:bg-gray-700 p-2 rounded cursor-pointer transition-colors"
-                  >
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              {/* Rankings */}
+              <div className="bg-darkBlack rounded-lg p-4 mb-6">
+                <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-green-400 to-yellow-400 bg-clip-text text-transparent">Bảng Xếp Hạng</h3>
+                <div className="space-y-3 bg-darkGray pt-1 pl-1">
+                  {rankings.map((item) => (
                     <div
-                      className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${
-                        item.rank <= 3 ? "bg-orange-500 text-white" : "bg-gray-600 text-gray-300"
-                      }`}
+                      key={item.rank}
+                      className="flex items-start space-x-3 hover:bg-gray-700 p-2 rounded cursor-pointer transition-colors"
                     >
-                      {item.rank}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center space-x-2 mb-1">
-                        <Image
-                          src="/placeholder.svg?height=40&width=30"
-                          alt={item.title}
-                          width={30}
-                          height={40}
-                          className="rounded"
-                        />
-                        <div className="flex-1 min-w-0">
-                          <h4 className="text-sm font-medium text-white line-clamp-2 hover:text-blue-400 transition-colors">
-                            {item.title}
-                          </h4>
-                          <p className="text-xs text-gray-400">{item.views}</p>
+                      <div
+                        className={`w-6 h-6 rounded flex items-center justify-center text-xs font-bold ${
+                          item.rank <= 3 ? "bg-orange-500 text-white" : "bg-gray-600 text-gray-300"
+                        }`}
+                      >
+                        {item.rank}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center space-x-2 mb-1">
+                          <Image
+                            src="/placeholder.svg?height=40&width=30"
+                            alt={item.title}
+                            width={30}
+                            height={40}
+                            className="rounded"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <h4 className="text-sm font-medium text-white line-clamp-2 hover:text-blue-400 transition-colors">
+                              {item.title}
+                            </h4>
+                            <p className="text-xs text-gray-400">{item.views}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
 
-            {/* Genres */}
-            <div className=""><GenreList genres={genres} /></div>
+              {/* Genres */}
+              <div className=""><GenreList genres={genres} /></div>
+            </div>
           </div>
         </div>
       </div>
-
       {/* Footer */}
       <Footer />
     </div>

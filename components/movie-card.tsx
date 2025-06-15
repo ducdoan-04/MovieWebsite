@@ -19,7 +19,7 @@ export function MovieCard({ id, title, views, image, quality, isNew, isFullMovie
     <Link href={`/movie/${id}`}>
       <Card className="bg-gray-800 border-gray-700 hover:bg-gray-750 transition-colors cursor-pointer group">
         <CardContent className="p-0">
-          <div className="relative">
+          <div className="relative group/card">
             <Image
               src={image || "/placeholder.svg"}
               alt={title}
@@ -50,10 +50,10 @@ export function MovieCard({ id, title, views, image, quality, isNew, isFullMovie
                 <Badge className="bg-purple-600 text-white text-xs">Trailer</Badge>
               </div>
             )}
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-t-lg" />
+            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover/card:bg-opacity-30 transition-all duration-200 rounded-t-lg" />
           </div>
           <div className="p-3">
-            <h3 className="text-sm font-medium text-white line-clamp-2 group-hover:text-blue-400 transition-colors">
+            <h3 className="text-sm font-medium text-white group-hover:text-blue-400 transition-colors line-clamp-2 h-[2.8em] overflow-hidden">
               {title}
             </h3>
           </div>
