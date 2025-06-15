@@ -55,9 +55,11 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-900 flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-gray-800 border-gray-700">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold text-blue-400">
-            YanHH<span className="text-orange-400">3D</span>
-            <span className="text-gray-400">.VIP</span>
+          <CardTitle className="text-2xl font-bold text-blue-300">
+            <Link href="/">
+              DevTuTien<span className="text-orange-400"></span>
+              <span className="text-red-400">.com</span>
+            </Link>
           </CardTitle>
         </CardHeader>
         <CardContent>

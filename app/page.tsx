@@ -13,8 +13,10 @@ import { GenreList } from "@/components/genre-list"
 import { MovieSchedule } from "@/components/movie-schedule"
 import { Footer } from "@/components/footer"
 import { MovieSlider } from "@/components/movie-slider"
-
+import { useRouter } from "next/navigation"
 // Mock data - in real app, this would come from your Java Spring backend
+
+
 const movies = [
   {
     id: 1,
@@ -171,6 +173,11 @@ export default function MovieStreamingHome() {
   const [searchQuery, setSearchQuery] = useState("")
   const [activeCategory, setActiveCategory] = useState("Mới Cập Nhật")
 
+  const router = useRouter()
+  const handleLoginClick = () => {
+    router.push("/login")
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-white" style={{background:"#202125"}}>
       {/* Header */}
@@ -211,7 +218,7 @@ export default function MovieStreamingHome() {
                 <Heart className="h-5 w-5 mr-2" />
                 Phim yêu thích
               </Button>
-              <Button className="bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded">
+              <Button className="bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded" onClick={handleLoginClick} >
                 <User className="h-4 w-4 mr-2" />
                 Đăng Nhập
               </Button>
