@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { GenreList } from "@/components/genre-list"
 import Link from "next/link"
 
+
 // Mock movie detail data
 const movieDetail = {
   id: 1,
@@ -103,14 +104,13 @@ export default function MovieDetail() {
                   <div className="flex-1">
                     <h1 className="text-2xl font-bold mb-2">{movieDetail.title}</h1>
                     <p className="text-gray-400 mb-4">{movieDetail.englishTitle}</p>
-
-                    <p className="text-gray-300 mb-4">{movieDetail.description}</p>
-
                     <div className="flex space-x-2">
-                      <Button className="bg-blue-600 hover:bg-blue-700">
-                        <Play className="h-4 w-4 mr-2" />
-                        Xem Ngay
-                      </Button>
+                      <Link href={`/movie/${movieDetail.id}/tap-${selectedEpisode}`}>
+                        <Button className="bg-cyanBlue hover:bg-cyan-500">
+                          <Play className="h-4 w-4 mr-2" />
+                          Xem Ngay
+                        </Button>
+                      </Link>
                       <Button variant="outline">
                         <Heart className="h-4 w-4 mr-2" />
                         Yêu Thích
@@ -120,6 +120,9 @@ export default function MovieDetail() {
                         Chia Sẻ
                       </Button>
                     </div>
+                    <p className="text-gray-300 mb-4 pt-3">{movieDetail.description}</p>
+
+
                   </div>
                 </div>
               </div>
@@ -247,8 +250,29 @@ export default function MovieDetail() {
                         </div>
                         <p className="text-gray-300">Phim hay quá! Đang chờ tập tiếp theo.</p>
                       </div>
+                      
                     </div>
                   </div>
+
+                  <div className="pt-1">
+                    <div className="space-y-4 bg-bgCmt"
+                          style={{
+                            border: "1px solid #1d1c1c",
+                            borderRadius: "20px",
+                            padding: "5px 10px",
+                          }}>
+                  <div className="border-b border-gray-700 pb-4">
+                    <div className="flex items-center space-x-2 mb-2">
+                      <div className="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-sm">T</div>
+                      <span className="font-medium">Thephoq</span>
+                      <span className="text-gray-400 text-sm">2 ngày trước</span>
+                    </div>
+                    <p className="text-gray-300">152</p>
+                  </div>
+                    </div>
+                  </div>
+
+
             </div>
 
               {/* Sidebar */}
@@ -297,6 +321,7 @@ export default function MovieDetail() {
                 </div>
               </div>
           </div>
+          
         </div>
       </div>
     </div>
