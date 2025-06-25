@@ -80,9 +80,11 @@ export default function MovieDetail() {
       <div className="relative z-10">
         <header className="bg-gray-800 border-b border-gray-700 p-4">
           <div className="container mx-auto flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="h-5 w-5" />
+          <Link href={`/`}>
+            <Button variant="ghost" size="sm" >
+              <ArrowLeft className="h-5 w-5"/>
             </Button>
+          </Link>
             <h1 className="text-xl font-bold text-blue-400">Chi Tiết Phim</h1>
           </div>
         </header>

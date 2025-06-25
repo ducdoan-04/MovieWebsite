@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { ArrowLeft, Play, Heart, Share2, Star, MessageCircle } from "lucide-react"
+import { ArrowLeft, Play, Heart, Share2, Star, MessageCircle, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { GenreList } from "@/components/genre-list"
 import Link from "next/link"
-
+import dynamic from "next/dynamic"
 // Mock movie detail data
 const movieDetail = {
   id: 1,
@@ -94,6 +94,10 @@ const genres = [
   { name: "Hiện Đại", count: 37 },
 ]
 
+const VideoPlayer = dynamic(() => import("@/app/video-player/[id]/[episode]/page"), { ssr: false })
+
+
+
 export default function MovieDetail() {
   const [selectedTab, setSelectedTab] = useState(0)
   const [selectedEpisode, setSelectedEpisode] = useState(152)
@@ -155,16 +159,36 @@ export default function MovieDetail() {
                 {/* Player + info tập + phần liên quan + bình luận – chiếm 2/3 */}
                 <div className="col-span-1 lg:col-span-2 flex flex-col bg-black ">
                   {/* Player */}
-                  <div className="bg-blue-400 m-5 rounded-lg aspect-video flex items-center justify-center relative">
-                    <span className="absolute top-2 left-2 bg-blue-600 text-xs px-2 py-1 rounded">DevTuTien.com</span>
-                    <Button size="lg" className="bg-blue-600 hover:bg-blue-700 z-10">
-                      <Play className="h-6 w-6 mr-2" />
-                      Phát Tập {selectedEpisode}
+                  {typeof window !== 'undefined' && (
+                    <VideoPlayer params={{ id: String(movieDetail.id), episode: String(selectedEpisode) }} key={selectedEpisode} />
+                  )}
+                    {/* Episode Navigation */}
+                <div className="p-0 bg-[#0c0c0c]">
+                  <div className="container mx-auto flex items-center justify-between">
+                    <Button
+                      variant="outline"
+                      onClick={() => setSelectedEpisode(selectedEpisode - 1)}
+                      disabled={selectedEpisode <= 1}
+                      className="bg-[#0c0c0c]"
+                    >
+                      <ChevronLeft className="h-2 w-2 mr-2" />
+                      Tập trước
+                    </Button>
+
+                    <Button
+                      variant="outline"
+                      onClick={() => setSelectedEpisode(selectedEpisode + 1)}
+                      disabled={selectedEpisode >= 157}
+                      className="bg-[#0c0c0c]"
+                    >
+                      Tập sau
+                      <ChevronRight className="h-2 w-2 ml-2" />
                     </Button>
                   </div>
+                </div>
 
                   {/* Info tập */}
-                  <div className="bg-black pt-1">
+                  <div className="bg-[#0c0c0c] pt-0">
                     <div className="bg-darkGray rounded-lg p-5 m-5 flex flex-col md:flex-row md:items-center md:justify-between gap-2"
                           style={{
                             border: "1px solid #333333",
