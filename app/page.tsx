@@ -122,16 +122,16 @@ const movies = [
 const categories = ["3D", "2D", "4K", "Anime", "Lịch phim"]
 
 const rankings = [
-  { rank: 1, title: "Đấu Phá Thương Khung Phần 5-6", views: "150/157 [4K]" },
-  { rank: 2, title: "Tiên Nghịch", views: "92/... [4K]" },
-  { rank: 3, title: "Mục Thần Ký", views: "34/78 [4K]" },
-  { rank: 4, title: "Thế Giới Hoàn Mỹ", views: "218/234 [4K]" },
-  { rank: 5, title: "Đấu La Đại Lục 2", views: "104/156 [4K]" },
-  { rank: 6, title: "Phàm Nhân Tu Tiên", views: "146/... [4K]" },
-  { rank: 7, title: "Gia Thiên", views: "112/156 [4K]" },
-  { rank: 8, title: "Thần Ấn Vương Tọa", views: "162/208 [4K]" },
-  { rank: 9, title: "Thôn Phệ Tinh Không", views: "Trailer 175/208 Tối T2" },
-  { rank: 10, title: "Kiếm Lai", views: "Trailer P2 Mới - Chưa có lịch" },
+  { rank: 1, title: "Đấu Phá Thương Khung Phần 5-6", views: "150/157 [4K]", image: "/image_movie/dau-pha-thuong-khung.jpg?height=300&width=200" },
+  { rank: 2, title: "Tiên Nghịch", views: "92/... [4K]", image: "/image_movie/tiennghich.png?height=300&width=200"  },
+  { rank: 3, title: "Mục Thần Ký", views: "34/78 [4K]", image: "/image_movie/muc-than-ky.jpg?height=300&width=200"  },
+  { rank: 4, title: "Thế Giới Hoàn Mỹ", views: "218/234 [4K]", image: "/image_movie/the-gioi-hoan-my.jpg?height=300&width=200"  },
+  { rank: 5, title: "Đấu La Đại Lục 2", views: "104/156 [4K]", image: "/image_movie/dau-la-dai-luc-2-tuyet-the-duong-mon.jpg?height=300&width=200"  },
+  { rank: 6, title: "Phàm Nhân Tu Tiên", views: "146/... [4K]", image: "/image_movie/pham-nhan-tu-tien.jpg?height=300&width=200"  },
+  { rank: 7, title: "Gia Thiên", views: "112/156 [4K],", image: "/image_movie/gia-thien.jpg?height=300&width=200"  },
+  { rank: 8, title: "Thần Ấn Vương Tọa", views: "162/208 [4K]", image: "/image_movie/than-an-vuong-toa.jpg?height=300&width=200"  },
+  { rank: 9, title: "Thôn Phệ Tinh Không", views: "Trailer 175/208 Tối T2", image: "/image_movie/thon-phe-tinh-khong.jpg?height=300&width=200"  },
+  { rank: 10, title: "Kiếm Lai", views: "Trailer P2 Mới - Chưa có lịch", image: "/image_movie/kiem-lai.jpg?height=300&width=200"  },
 ]
 
 const genres = [
@@ -370,7 +370,7 @@ export default function MovieStreamingHome() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center space-x-2 mb-1">
                           <Image
-                            src="/placeholder.svg?height=40&width=30"
+                            src={item.image}
                             alt={item.title}
                             width={30}
                             height={40}
